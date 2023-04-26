@@ -60,12 +60,31 @@
 	  function animation(){
 		  let ele = document.getElementsByTagName('img');
 		  // let win = window.pageYOffset;
-		  for(let i = 0; i<ele.length; i++){
-			  // let top = ele[i].offsetTop;
-			  // if (win > top-500){
-				  ele[i].classList.add('active');
-			  // } 
-		  }
+		  // for(let i = 0; i<ele.length; i++){
+			 //  let top = ele[i].offsetTop;
+			 //  if (win > top){
+				//   ele[i].classList.add('active');
+			 //  } 
+		  // }
+
+		   var window_height = window.height;
+		    var window_top_position = window.scrollTop;
+		    var window_bottom_position = (window_top_position + window_height);
+		
+		    //iterate through elements to see if its in view
+		    for(let i = 0; i<ele.length; i++){
+		
+		      //get the element sinformation
+		      var element = ele[i];
+		      var element_height = element.outerHeight;
+		      var element_top_position = element.offsettop;
+		      var element_bottom_position = (element_top_position + element_height);
+		
+		      //check to see if this current container is visible (its viewable if it exists between the viewable space of the viewport)
+		      if ((element_bottom_position >= window_top_position) && (element_top_position <= window_bottom_position)) {
+		        element.addClass('active');
+		      }
+		    };
 	  }
 	  let res = debounce(animation);;
 	  res();
