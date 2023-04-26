@@ -57,6 +57,18 @@
         if (callNow) func.apply(context, args);
       };
     }
+	  function animation(){
+		  let ele = document.getElementsByClassName('slide-in');
+		  let win = window.pageYOffset;
+		  for(let i = 0; i<ele.length; i++){
+			  let top = ele[i].offsetTop;
+			  if (win > top-500){
+				  ele[i].classList.add('active');
+			  } 
+		  }
+	  }
+	  let res = debounce(animation);;
+	  res();
 
   </script>
 
